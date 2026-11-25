@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clean Docs | Jasa Perapihan & Editing Dokumen</title>
+<meta name="description" content="Clean Docs: jasa merapikan format laporan dan dokumen, cek typo, serta parafrase. Mulai Rp500 per halaman.">
+<script>document.documentElement.classList.add("js")</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#2b579a; --bg-alt:#244a85; --bg2:#e8f0fe; --pop:#fcad03; --onbg:#d2e3fc; --hl:#aecbfa; --card:#ffffff; --line:#dadce0;
+    --text:#202124; --muted:#5f6368;
+    --accent:#1a73e8; --accent-ink:#ffffff; --deep:#2b579a; --sage:#1e8e3e; --bad:#d93025;
+    --wa:#25d366; --wa-dark:#1da851;
+    --r:24px;
+    --sans:"Inter","Segoe UI",system-ui,-apple-system,Roboto,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:90px}
+  body{font-family:var(--sans);background:var(--bg);color:#fff;line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img,svg{display:block}
+  .wrap{width:min(1120px,92%);margin:0 auto}
+  :focus-visible{outline:3px solid #fff;outline-offset:3px;box-shadow:0 0 0 6px var(--accent);border-radius:6px}
+
+  /* animasi muncul */
+  .js .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+  .js .rv.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .js .rv{opacity:1;transform:none;transition:none}
+    *{transition:none!important}
+    .fl{animation:none;transform:rotate(var(--r,0deg))}
+  }
+
+  /* NAV (kapsul melayang) */
+  .nav{position:sticky;top:14px;z-index:20;margin-top:14px}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 12px 10px 20px;
+    background:#ffffffe6;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:999px;color:var(--text)}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.01em}
+  .logo-mark{width:30px;height:30px;border-radius:9px;background:var(--accent);display:flex;align-items:center;justify-content:center}
+  .logo-mark svg{width:18px;height:18px}
+  .nav ul{display:flex;gap:6px;list-style:none}
+  .nav ul a{display:block;padding:8px 14px;border-radius:999px;color:var(--muted);font-size:.93rem;font-weight:500;transition:.2s}
+  .nav ul a:hover{color:var(--accent);background:#1a73e814}
+
+  /* tombol */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 26px;border-radius:999px;font-weight:600;font-size:1rem;border:0;cursor:pointer;font-family:inherit;transition:.2s}
+  .btn svg{width:20px;height:20px;flex-shrink:0}
+  .btn-wa{background:var(--wa);color:#04210f}
+  .btn-wa:hover{background:var(--wa-dark);transform:translateY(-2px)}
+  .btn-main{background:var(--pop);color:#2a2c2e}
+  .btn-main:hover{background:#e39b00;transform:translateY(-2px)}
+  .btn-ghost{border:1px solid var(--line);color:var(--text);background:transparent}
+  .btn-ghost:hover{border-color:var(--text);transform:translateY(-2px)}
+  .btn-sm{padding:10px 20px;font-size:.93rem}
+  .btn-lg{padding:18px 34px;font-size:1.1rem}
+  .hero-cta .btn-ghost{color:#fff;border-color:#ffffff80}
+  .hero-cta .btn-ghost:hover{border-color:#fff;background:#ffffff1a}
+
+  section{padding:104px 0;position:relative;overflow:hidden}
+  #harga,#faq{background:var(--bg-alt)}
+  .wrap{position:relative;z-index:1}
+
+  /* elemen pendukung latar */
+  .deco{position:absolute;z-index:0;pointer-events:none;color:#fff;opacity:.1}
+  .deco svg{display:block;width:100%;height:auto;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+  .deco.pop{color:var(--pop);opacity:.8}
+  .fl{animation:float 8s ease-in-out infinite}
+  .fl.slow{animation-duration:11s;animation-delay:-3s}
+  @keyframes float{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-14px) rotate(var(--r,0deg))}}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;padding:7px 14px;border:1px solid #ffffff4d;border-radius:999px;font-size:.85rem;font-weight:600;color:var(--onbg)}
+  .dot{width:8px;height:8px;border-radius:50%;background:#81c995}
+  h1,h2,h3{letter-spacing:-.03em;line-height:1.08}
+  h2{font-size:clamp(2rem,4.6vw,3.2rem);font-weight:800;margin:18px 0 14px}
+  h2 .hl{color:var(--hl)}
+  .lead{color:var(--onbg);font-size:1.1rem;max-width:56ch}
+  .head{margin-bottom:48px}
+
+  /* HERO */
+  .hero{padding:72px 0 110px;position:relative;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+  .hero h1{font-size:clamp(3rem,8vw,6rem);font-weight:800;margin:22px 0 22px}
+  .hero h1 .hl{color:var(--pop)}
+  .hero .lead{margin-bottom:34px}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:34px}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;list-style:none}
+  .chips li{display:flex;align-items:center;gap:8px;font-size:.9rem;color:var(--onbg)}
+  .chips svg{width:18px;height:18px;color:#81c995}
+
+  /* visual sebelum / sesudah */
+  .ba{display:grid;grid-template-columns:1fr 1fr;gap:18px;position:relative;isolation:isolate;margin-bottom:14px}
+  .ba::before{content:"";position:absolute;width:440px;height:440px;border-radius:50%;background:#3566b0;right:-70px;top:-30px;z-index:-1}
+  .sticker{position:absolute;left:50%;bottom:-24px;transform:translateX(-50%) rotate(-4deg);background:var(--pop);color:#2a2c2e;font-weight:800;font-size:.95rem;padding:10px 18px;border-radius:14px;box-shadow:0 14px 26px -10px #0a1f4acc;white-space:nowrap}
+  .ba-col{display:flex;flex-direction:column;gap:12px}
+  .tag{align-self:flex-start;padding:5px 12px;border-radius:999px;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+  .tag.b{background:#fff;color:var(--bad)}
+  .tag.a{background:#fff;color:var(--sage)}
+  .paper{background:#ffffff;border:1px solid var(--line);color:#202124;border-radius:18px;padding:22px 20px;min-height:340px;box-shadow:0 24px 50px -26px #0a1f4acc;font-size:.78rem;line-height:1.5;position:relative}
+  .paper .t{font-weight:700;font-size:.95rem;margin-bottom:12px}
+  .paper .bar{height:7px;border-radius:4px;background:#dadce0;margin:8px 0}
+  .paper p{margin:10px 0}
+  .typo{text-decoration:underline wavy #d9534f;text-underline-offset:3px}
+  .paper.messy{transform:rotate(-2.2deg)}
+  .paper.messy .t{text-align:left;font-family:"Times New Roman",serif;font-size:1.05rem;font-weight:400}
+  .paper.messy .bar:nth-of-type(2){width:96%;margin-left:6px}
+  .paper.messy .bar:nth-of-type(3){width:70%}
+  .paper.messy .bar:nth-of-type(4){width:88%;margin-left:14px}
+  .paper.messy .bar:nth-of-type(5){width:60%;margin-left:4px}
+  .paper.messy .bar:nth-of-type(6){width:92%}
+  .paper.tidy{transform:rotate(1.6deg)}
+  .paper.tidy .t{text-align:center;font-size:1rem}
+  .paper.tidy .bar{width:100%}
+  .paper.tidy .pg{position:absolute;bottom:14px;left:0;right:0;text-align:center;font-size:.72rem;color:#7a7d80}
+  .ok{position:absolute;top:-14px;right:-10px;width:44px;height:44px;border-radius:50%;background:var(--sage);color:#ffffff;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px -6px #1e8e3e99}
+  .ok svg{width:24px;height:24px}
+
+  /* LAYANAN (bento) */
+  .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+  .tile{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:32px;transition:.25s}
+  .tile:hover{border-color:var(--accent);transform:translateY(-4px)}
+  .t1{grid-column:span 4}
+  .t2{grid-column:span 2}
+  .t3{grid-column:span 2}
+  .t4{grid-column:span 2}
+  .t5{grid-column:span 2}
+  .ico{width:52px;height:52px;border-radius:16px;background:var(--accent);color:var(--accent-ink);display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+  .ico svg{width:26px;height:26px}
+  .tile h3{font-size:1.45rem;font-weight:800;margin-bottom:10px}
+  .tile p{color:var(--muted);font-size:.98rem}
+  .tile ul{list-style:none;margin-top:18px;display:grid;grid-template-columns:repeat(2,1fr);gap:10px 24px}
+  .tile li{display:flex;gap:10px;font-size:.95rem}
+  .tile li::before{content:"";flex-shrink:0;width:18px;height:18px;margin-top:3px;border-radius:50%;background:var(--sage) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center/12px no-repeat}
+  .tile.alt{background:#d2e3fc;border-color:#d2e3fc}
+  .tile.alt:hover{transform:translateY(-4px);border-color:var(--accent)}
+  .big{font-size:2.6rem;font-weight:800;letter-spacing:-.04em;line-height:1}
+  .tile,.plan,.calc,.step,details,.paper{color:var(--text)}
+
+  /* HARGA */
+  .price-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch}
+  .plans{display:grid;gap:18px}
+  .plan{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:30px}
+  .plan h3{font-size:1.2rem;font-weight:800;margin-bottom:6px}
+  .plan .amt{font-size:2.6rem;font-weight:800;letter-spacing:-.04em;line-height:1.1;color:var(--accent)}
+  .plan .amt small{font-size:1rem;font-weight:500;color:var(--muted);letter-spacing:0}
+  .plan p{color:var(--muted);font-size:.95rem;margin-top:8px}
+  .note{color:var(--onbg);font-size:.9rem;margin-top:4px}
+  .calc{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:32px;display:flex;flex-direction:column;gap:22px}
+  .calc h3{font-size:1.4rem;font-weight:800}
+  .lbl{display:block;font-weight:600;font-size:.92rem;margin-bottom:10px}
+  .stepper{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+  .stepper button{width:52px;height:52px;border:0;background:transparent;color:var(--text);font-size:1.5rem;cursor:pointer;font-family:inherit;transition:.2s}
+  .stepper button:hover{background:#1a73e814}
+  .stepper input{width:84px;height:52px;border:0;background:transparent;color:var(--text);text-align:center;font-size:1.25rem;font-weight:700;font-family:inherit;-moz-appearance:textfield}
+  .stepper input::-webkit-outer-spin-button,.stepper input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  .toggle{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 18px;border:1px solid var(--line);border-radius:16px;cursor:pointer;background:#fff;transition:.2s}
+  .toggle:hover{border-color:var(--accent)}
+  .toggle input{position:absolute;opacity:0;pointer-events:none}
+  .toggle .tt{font-weight:600}
+  .toggle .ts{display:block;font-size:.85rem;color:var(--muted);font-weight:400}
+  .sw{flex-shrink:0;width:46px;height:28px;border-radius:999px;background:var(--line);position:relative;transition:.2s}
+  .sw::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:.2s}
+  .toggle input:checked ~ .sw{background:var(--accent)}
+  .toggle input:checked ~ .sw::after{left:21px}
+  .toggle:has(input:focus-visible){outline:3px solid var(--accent);outline-offset:3px}
+  .sum{border-top:1px dashed var(--line);padding-top:20px}
+  .row{display:flex;justify-content:space-between;color:var(--muted);font-size:.95rem;padding:3px 0}
+  .total{display:flex;justify-content:space-between;align-items:baseline;margin-top:10px}
+  .total span:first-child{font-weight:600}
+  .total b{font-size:2.3rem;font-weight:800;letter-spacing:-.04em;color:var(--accent)}
+  .warn{font-size:.85rem;color:var(--bad);min-height:1.2em}
+
+  /* CARA KERJA */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;list-style:none;counter-reset:s}
+  .step{counter-increment:s;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:28px}
+  .step::before{content:"0" counter(s);display:block;font-size:2.4rem;font-weight:800;letter-spacing:-.04em;color:var(--accent);margin-bottom:14px}
+  .step h3{font-size:1.15rem;font-weight:800;margin-bottom:6px}
+  .step p{color:var(--muted);font-size:.93rem}
+
+  /* FAQ */
+  .faq{display:grid;gap:12px;max-width:820px}
+  details{background:var(--card);border:1px solid var(--line);border-radius:18px;transition:.2s}
+  details[open]{border-color:var(--accent)}
+  summary{list-style:none;cursor:pointer;padding:22px 26px;font-weight:600;font-size:1.05rem;display:flex;justify-content:space-between;align-items:center;gap:16px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";font-size:1.6rem;line-height:1;color:var(--accent);transition:.2s}
+  details[open] summary::after{transform:rotate(45deg)}
+  details p{padding:0 26px 22px;color:var(--muted)}
+
+  /* CTA */
+  .cta{background:#fff;color:var(--text);border-radius:36px;padding:72px 48px;text-align:center}
+  .cta h2{margin-top:0;color:var(--text)}
+  .cta p{color:var(--muted);font-size:1.1rem;max-width:48ch;margin:0 auto 32px}
+  .cta .row2{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+  .btn-dark{background:#fff;color:var(--deep)}
+  .btn-dark:hover{background:#e8f0fe;transform:translateY(-2px)}
+
+  footer{padding:40px 0 48px;color:var(--onbg);font-size:.9rem}
+  .foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;border-top:1px solid #ffffff40;padding-top:28px}
+  .foot a{color:#fff;font-weight:600}
+  .foot a:hover{color:var(--hl)}
+  .foot nav{display:flex;gap:20px}
+
+  @media(max-width:960px){
+    .hero-grid,.price-grid{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr 1fr}
+    .t1{grid-column:span 6}
+    .t2,.t3,.t4,.t5{grid-column:span 3}
+  }
+  @media(max-width:720px){
+    .deco.hm{display:none}
+    section{padding:72px 0}
+    .nav ul{display:none}
+    .bento{grid-template-columns:1fr}
+    .t1,.t2,.t3,.t4,.t5{grid-column:auto}
+    .tile ul{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr}
+    .cta{padding:52px 24px;border-radius:28px}
+    .hero-cta .btn{flex:1 1 100%}
+  }
+  @media(max-width:520px){
+    .ba{grid-template-columns:1fr}
+    .paper{min-height:0;padding-bottom:36px}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="wrap">
+    <div class="nav-in">
+      <a href="#home" class="logo" aria-label="Clean Docs, ke atas">
+        <span class="logo-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M9 14l2 2 4-4"/></svg></span>
+        Clean Docs
+      </a>
+      <ul>
+        <li><a href="#layanan">Layanan</a></li>
+        <li><a href="#harga">Harga</a></li>
+        <li><a href="#cara-kerja">Cara Kerja</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <a class="btn btn-main btn-sm wa-link" data-pesan="Halo, aku mau tanya jasa Clean Docs." href="#kontak">Chat WhatsApp</a>
+    </div>
+  </div>
+</header>
+
+<main id="home">
+
+  <!-- HERO -->
+  <section class="hero">
+  <div class="deco fl" aria-hidden="true" style="left:-36px;top:34px;width:170px;--r:-14deg;opacity:.09"><svg viewBox="0 0 120 150"><path d="M80 6H20a10 10 0 0 0-10 10v118a10 10 0 0 0 10 10h80a10 10 0 0 0 10-10V36z"/><path d="M80 6v30h30"/><path d="M30 62h60M30 80h60M30 98h40"/></svg></div>
+  <div class="deco fl slow hm" aria-hidden="true" style="right:5%;top:70px;width:74px;--r:8deg;opacity:.14"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44"/><path d="M30 52l14 14 28-30"/></svg></div>
+  <div class="deco hm" aria-hidden="true" style="left:44%;top:18px;width:150px;opacity:.2"><svg viewBox="0 0 160 160" style="stroke:none"><pattern id="dta" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="2.6" fill="currentColor"/></pattern><rect width="160" height="160" fill="url(#dta)"/></svg></div>
+  <div class="deco fl slow hm" aria-hidden="true" style="left:38%;bottom:34px;width:84px;--r:-20deg;opacity:.13"><svg viewBox="0 0 120 120"><path d="M84 10l26 26L40 106l-32 8 8-32z"/><path d="M70 24l26 26"/></svg></div>
+  <div class="deco pop hm" aria-hidden="true" style="left:5%;bottom:40px;width:150px;--r:0deg"><svg viewBox="0 0 160 24" style="stroke-width:5"><path d="M3 12q10-16 20 0t20 0 20 0 20 0 20 0 20 0 20 0"/></svg></div>
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow rv"><span class="dot"></span>Jasa perapihan &amp; editing dokumen</span>
+        <h1 class="rv">Dokumen rapi,<br><span class="hl">hati tenang.</span></h1>
+        <p class="lead rv">Deadline mepet dan format masih berantakan? Serahin ke aku. Margin, daftar isi, sitasi, sampai typo dibereskan sesuai pedoman kamu.</p>
+        <div class="hero-cta rv">
+          <a class="btn btn-main btn-lg" href="#harga">Hitung harga</a>
+          <a class="btn btn-ghost btn-lg wa-link" data-pesan="Halo, aku mau tanya jasa Clean Docs." href="#kontak">Chat WhatsApp</a>
+        </div>
+        <ul class="chips rv">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Sesuai pedoman</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Hasil .docx &amp; PDF</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Min. order 5 halaman</li>
+        </ul>
+      </div>
+
+      <div class="ba rv" aria-label="Contoh dokumen sebelum dan sesudah dirapikan">
+        <div class="ba-col">
+          <span class="tag b">Sebelum</span>
+          <div class="paper messy">
+            <div class="t">laporan <span class="typo">Prakitkum</span> jaringan</div>
+            <p>Hasil pengujian <span class="typo">menunjukan</span> bahwa koneksi berjalan dengan baik.</p>
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+          </div>
+        </div>
+        <div class="ba-col">
+          <span class="tag a">Sesudah</span>
+          <div class="paper tidy">
+            <span class="ok" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>
+            <div class="t">Laporan Praktikum Jaringan</div>
+            <p>Hasil pengujian menunjukkan bahwa koneksi berjalan dengan baik.</p>
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            <div class="pg">1</div>
+          </div>
+        </div>
+        <div class="sticker">Mulai Rp500 / halaman</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LAYANAN -->
+  <section id="layanan">
+  <div class="deco fl slow hm" aria-hidden="true" style="right:-40px;top:40px;width:190px;--r:12deg;opacity:.08"><svg viewBox="0 0 120 150"><path d="M80 6H20a10 10 0 0 0-10 10v118a10 10 0 0 0 10 10h80a10 10 0 0 0 10-10V36z"/><path d="M80 6v30h30"/><path d="M30 62h60M30 80h60M30 98h40"/></svg></div>
+  <div class="deco fl hm" aria-hidden="true" style="left:-26px;bottom:50px;width:120px;--r:-10deg;opacity:.08"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44"/><path d="M30 52l14 14 28-30"/></svg></div>
+    <div class="wrap">
+      <div class="head rv">
+        <span class="eyebrow"><span class="dot"></span>Layanan</span>
+        <h2>Semua yang bikin dokumenmu <span class="hl">siap kumpul.</span></h2>
+        <p class="lead">Dua layanan yang bisa dipakai sendiri-sendiri atau digabung.</p>
+      </div>
+      <div class="bento">
+        <article class="tile t1 rv">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h6"/></svg></div>
+          <h3>Perapihan Format</h3>
+          <p>Laporan, makalah, proposal, sampai dokumen kerja dirapikan sesuai pedoman yang kamu punya.</p>
+          <ul>
+            <li>Margin, font, dan spasi</li>
+            <li>Daftar isi otomatis</li>
+            <li>Penomoran halaman</li>
+            <li>Heading dan caption gambar/tabel</li>
+            <li>Sitasi dan daftar pustaka</li>
+            <li>Daftar gambar dan daftar tabel</li>
+          </ul>
+        </article>
+        <article class="tile t2 alt rv">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div>
+          <h3>Editing</h3>
+          <p>Cek typo, ejaan, tata bahasa, dan kalimat janggal. Bisa juga parafrase biar tulisanmu mengalir.</p>
+        </article>
+        <article class="tile t3 rv">
+          <div class="big">.docx<span style="color:var(--accent)"> + </span>PDF</div>
+          <p style="margin-top:14px">Hasil akhir kamu terima dalam dua format, siap diedit atau langsung dikumpul.</p>
+        </article>
+        <article class="tile t4 rv">
+          <div class="big" style="color:var(--accent)">5 hal.</div>
+          <p style="margin-top:14px">Minimal order. Dokumen yang lebih pendek tetap bisa, tinggal dijumlahkan jadi 5 halaman.</p>
+        </article>
+        <article class="tile t5 rv">
+          <div class="big">Rp500</div>
+          <p style="margin-top:14px">Harga perapihan per halaman. Editing menambah Rp500 per halaman.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- HARGA -->
+  <section id="harga">
+  <div class="deco fl slow hm" aria-hidden="true" style="right:3%;top:44px;width:110px;--r:10deg;opacity:.1"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44"/><circle cx="50" cy="50" r="32"/><path d="M42 62V38h10a7 7 0 0 1 0 14H42M52 52l8 10"/></svg></div>
+  <div class="deco hm" aria-hidden="true" style="left:-14px;bottom:26px;width:170px;opacity:.16"><svg viewBox="0 0 160 160" style="stroke:none"><pattern id="dtb" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="2.6" fill="currentColor"/></pattern><rect width="160" height="160" fill="url(#dtb)"/></svg></div>
+    <div class="wrap">
+      <div class="head rv">
+        <span class="eyebrow"><span class="dot"></span>Harga</span>
+        <h2>Transparan. <span class="hl">Hitung sendiri.</span></h2>
+        <p class="lead">Masukkan jumlah halaman, pilih layanan, dan lihat estimasinya langsung.</p>
+      </div>
+      <div class="price-grid">
+        <div class="plans">
+          <div class="plan rv">
+            <h3>Perapihan Format</h3>
+            <div class="amt">Rp500 <small>/ halaman</small></div>
+            <p>Format, daftar isi, penomoran, sitasi, dan daftar pustaka.</p>
+          </div>
+          <div class="plan rv">
+            <h3>Tambahan Editing</h3>
+            <div class="amt">+Rp500 <small>/ halaman</small></div>
+            <p>Cek typo, ejaan, tata bahasa, dan parafrase, di atas harga perapihan.</p>
+          </div>
+          <p class="note rv">Minimal order 5 halaman. Ini estimasi awal; harga final dikonfirmasi lewat WhatsApp setelah dokumenmu dicek.</p>
+        </div>
+
+        <div class="calc rv">
+          <h3>Kalkulator estimasi</h3>
+          <div>
+            <label class="lbl" for="pages">Jumlah halaman</label>
+            <div class="stepper">
+              <button type="button" id="minus" aria-label="Kurangi halaman">&minus;</button>
+              <input id="pages" type="number" inputmode="numeric" min="5" max="1000" value="10">
+              <button type="button" id="plus" aria-label="Tambah halaman">+</button>
+            </div>
+            <div class="warn" id="warn" role="status"></div>
+          </div>
+          <label class="toggle">
+            <span><span class="tt">Tambah editing</span><span class="ts">Cek typo, ejaan, dan parafrase</span></span>
+            <input type="checkbox" id="edit">
+            <span class="sw" aria-hidden="true"></span>
+          </label>
+          <div class="sum">
+            <div class="row"><span>Perapihan format</span><span id="r1">Rp0</span></div>
+            <div class="row"><span>Editing</span><span id="r2">Rp0</span></div>
+            <div class="total"><span>Estimasi total</span><b id="tot">Rp0</b></div>
+          </div>
+          <a id="orderBtn" class="btn btn-wa btn-lg" href="#kontak" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12 0C5.4 0 .1 5.3.1 11.9c0 2.1.5 4.1 1.6 5.9L0 24l6.4-1.7a11.9 11.9 0 0 0 5.6 1.4c6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.200-3.400-8.300zM12 21.700c-1.800 0-3.500-.5-5-1.400l-.4-.2-3.800 1 1-3.700-.2-.4a9.800 9.800 0 0 1-1.500-5.200c0-5.400 4.400-9.800 9.900-9.800 2.600 0 5.100 1 6.900 2.900a9.700 9.700 0 0 1 2.900 6.900c0 5.400-4.400 9.900-9.800 9.900zm5.400-7.400c-.3-.1-1.800-.9-2-1s-.5-.1-.7.100-.8 1-1 1.200-.4.200-.7.100a8 8 0 0 1-4-3.500c-.3-.5.300-.5.900-1.600.1-.2.100-.4 0-.5l-.9-2.200c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.100-.8.400s-1 1-1 2.500 1.100 2.900 1.200 3.100c.1.200 2.100 3.200 5.100 4.500 1.900.8 2.600.9 3.600.7.600-.1 1.800-.7 2-1.400.3-.7.300-1.300.2-1.400-.1-.2-.3-.2-.6-.4z"/></svg>
+            Pesan via WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARA KERJA -->
+  <section id="cara-kerja">
+  <div class="deco hm" aria-hidden="true" style="right:-10px;top:36px;width:170px;opacity:.16"><svg viewBox="0 0 160 160" style="stroke:none"><pattern id="dtc" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="2.6" fill="currentColor"/></pattern><rect width="160" height="160" fill="url(#dtc)"/></svg></div>
+  <div class="deco fl slow hm" aria-hidden="true" style="left:-18px;bottom:30px;width:110px;--r:-24deg;opacity:.09"><svg viewBox="0 0 120 120"><path d="M84 10l26 26L40 106l-32 8 8-32z"/><path d="M70 24l26 26"/></svg></div>
+    <div class="wrap">
+      <div class="head rv">
+        <span class="eyebrow"><span class="dot"></span>Cara kerja</span>
+        <h2>Empat langkah, <span class="hl">tinggal terima beres.</span></h2>
+      </div>
+      <ol class="steps">
+        <li class="step rv"><h3>Kirim dokumen</h3><p>Chat lewat WhatsApp, kirim file dan pedoman formatnya (kalau ada), lalu sebutkan deadline-mu.</p></li>
+        <li class="step rv"><h3>Konfirmasi harga</h3><p>Dokumen dicek, lalu kamu dapat harga final dan estimasi waktu pengerjaan.</p></li>
+        <li class="step rv"><h3>Pengerjaan</h3><p>Dokumen dirapikan dan diedit sesuai kesepakatan.</p></li>
+        <li class="step rv"><h3>Terima hasil</h3><p>File .docx dan PDF dikirim ke kamu. Ada yang kurang pas? Revisi ringan bisa.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+  <div class="deco fl hm" aria-hidden="true" style="right:5%;top:60px;width:130px;--r:-8deg;opacity:.1"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44"/><path d="M38 40a12 12 0 1 1 18 10c-4 3-6 5-6 10"/><path d="M50 72v.5"/></svg></div>
+  <div class="deco fl slow hm" aria-hidden="true" style="left:-30px;bottom:24px;width:130px;--r:10deg;opacity:.07"><svg viewBox="0 0 120 150"><path d="M80 6H20a10 10 0 0 0-10 10v118a10 10 0 0 0 10 10h80a10 10 0 0 0 10-10V36z"/><path d="M80 6v30h30"/><path d="M30 62h60M30 80h60M30 98h40"/></svg></div>
+    <div class="wrap">
+      <div class="head rv">
+        <span class="eyebrow"><span class="dot"></span>FAQ</span>
+        <h2>Pertanyaan yang <span class="hl">sering muncul.</span></h2>
+      </div>
+      <div class="faq rv">
+        <details>
+          <summary>Dokumen apa saja yang bisa diproses?</summary>
+          <p>Laporan praktikum, makalah, proposal, laporan magang, dan dokumen kerja. Kalau ragu, kirim saja contohnya lewat WhatsApp.</p>
+        </details>
+        <details>
+          <summary>Apa bedanya perapihan format dan editing?</summary>
+          <p>Perapihan format mengurus tampilan: margin, font, daftar isi, penomoran, dan sitasi. Editing mengurus isi tulisan: typo, ejaan, tata bahasa, dan parafrase.</p>
+        </details>
+        <details>
+          <summary>Berapa minimal order?</summary>
+          <p>Minimal 5 halaman dokumen per order.</p>
+        </details>
+        <details>
+          <summary>Dalam format apa hasil akhirnya?</summary>
+          <p>Kamu menerima file .docx supaya masih bisa diedit, dan PDF yang siap dikumpul.</p>
+        </details>
+        <details>
+          <summary>Berapa lama pengerjaannya?</summary>
+          <p>Tergantung jumlah halaman dan antrean. Sebutkan deadline-mu saat chat supaya bisa dipastikan cukup waktunya.</p>
+        </details>
+        <details>
+          <summary>Apakah isi tulisan saya akan diubah?</summary>
+          <p>Perapihan format tidak mengubah isi. Perubahan kata atau kalimat hanya dilakukan kalau kamu memilih layanan editing atau parafrase.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAK -->
+  <section id="kontak" style="padding-top:40px">
+    <div class="wrap">
+      <div class="cta rv">
+        <h2>Siap bikin dokumenmu <span style="text-decoration:underline;text-decoration-thickness:5px;text-underline-offset:8px">rapi?</span></h2>
+        <p>Kirim dokumenmu sekarang, ceritakan deadline-nya, dan kita mulai dari situ.</p>
+        <div class="row2">
+          <a class="btn btn-wa btn-lg wa-link" data-pesan="Halo, aku mau pakai jasa Clean Docs. Boleh tanya dulu?" href="#kontak" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12 0C5.4 0 .1 5.3.1 11.9c0 2.1.5 4.1 1.6 5.9L0 24l6.4-1.7a11.9 11.9 0 0 0 5.6 1.4c6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.200-3.400-8.300zM12 21.700c-1.800 0-3.500-.5-5-1.400l-.4-.2-3.800 1 1-3.700-.2-.4a9.800 9.800 0 0 1-1.500-5.200c0-5.400 4.400-9.800 9.900-9.800 2.600 0 5.100 1 6.900 2.900a9.700 9.700 0 0 1 2.900 6.900c0 5.400-4.400 9.900-9.800 9.900zm5.400-7.400c-.3-.1-1.800-.9-2-1s-.5-.1-.7.100-.8 1-1 1.200-.4.200-.7.100a8 8 0 0 1-4-3.500c-.3-.5.300-.5.900-1.600.1-.2.100-.4 0-.5l-.9-2.200c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.100-.8.400s-1 1-1 2.500 1.100 2.900 1.200 3.100c.1.200 2.100 3.200 5.100 4.500 1.900.8 2.600.9 3.600.7.600-.1 1.800-.7 2-1.400.3-.7.300-1.300.2-1.400-.1-.2-.3-.2-.6-.4z"/></svg>
+            Chat via WhatsApp
+          </a>
+          <a id="igLink" class="btn btn-ghost btn-lg" style="border-color:var(--line);color:var(--text)" href="https://instagram.com/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            Ikuti di Instagram
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <span>© <span id="year"></span> Clean Docs. Dibuat dengan HTML &amp; CSS.</span>
+      <nav aria-label="Tautan footer">
+        <a class="wa-link" data-pesan="Halo, aku mau tanya jasa Clean Docs." href="#kontak" target="_blank" rel="noopener">WhatsApp</a>
+        <a id="igFoot" href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ====== EDIT DATA DI SINI ====== */
+  const NOMOR_WA    = "6281234567890";   // GANTI: format 62 tanpa 0 dan tanpa +/spasi
+  const USERNAME_IG = "username_anda";   // GANTI: username Instagram tanpa @
+  const HARGA_RAPI  = 500;               // harga perapihan per halaman (Rp)
+  const HARGA_EDIT  = 500;               // tambahan editing per halaman (Rp)
+  const MIN_HALAMAN = 5;                 // minimal order
+  /* =============================== */
+
+  var wa = function(pesan){ return "https://wa.me/" + NOMOR_WA + "?text=" + encodeURIComponent(pesan); };
+  var rp = function(n){ return "Rp" + n.toLocaleString("id-ID"); };
+
+  // tautan WhatsApp umum
+  document.querySelectorAll(".wa-link").forEach(function(a){
+    a.href = wa(a.dataset.pesan);
+    a.target = "_blank"; a.rel = "noopener";
+  });
+  // Instagram
+  document.getElementById("igLink").href = "https://instagram.com/" + USERNAME_IG;
+  document.getElementById("igFoot").href = "https://instagram.com/" + USERNAME_IG;
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // kalkulator
+  var pages = document.getElementById("pages"),
+      edit  = document.getElementById("edit"),
+      warn  = document.getElementById("warn"),
+      order = document.getElementById("orderBtn");
+
+  function clamp(){
+    var v = parseInt(pages.value, 10);
+    if (isNaN(v)) v = MIN_HALAMAN;
+    warn.textContent = v < MIN_HALAMAN ? "Minimal order " + MIN_HALAMAN + " halaman." : "";
+    return Math.min(Math.max(v, MIN_HALAMAN), 1000);
+  }
+  function hitung(){
+    var n = clamp();
+    var a = n * HARGA_RAPI, b = edit.checked ? n * HARGA_EDIT : 0;
+    document.getElementById("r1").textContent  = rp(a);
+    document.getElementById("r2").textContent  = edit.checked ? rp(b) : "Tidak dipilih";
+    document.getElementById("tot").textContent = rp(a + b);
+    var layanan = edit.checked ? "perapihan format + editing" : "perapihan format";
+    order.href = wa("Halo, aku mau pesan jasa Clean Docs.\nJumlah: " + n + " halaman\nLayanan: " + layanan + "\nEstimasi: " + rp(a + b) + "\nBoleh dikonfirmasi?");
+  }
+  document.getElementById("minus").onclick = function(){ pages.value = Math.max(MIN_HALAMAN, clamp() - 1); hitung(); };
+  document.getElementById("plus").onclick  = function(){ pages.value = Math.min(1000, clamp() + 1); hitung(); };
+  pages.addEventListener("input", hitung);
+  pages.addEventListener("blur", function(){ pages.value = clamp(); hitung(); });
+  edit.addEventListener("change", hitung);
+  hitung();
+
+  // animasi muncul saat di-scroll
+  var els = document.querySelectorAll(".rv");
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold: .12 });
+    els.forEach(function(el){ io.observe(el); });
+  } else {
+    els.forEach(function(el){ el.classList.add("in"); });
+  }
+</script>
+</body>
+</html>
